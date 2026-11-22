@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atlas of Wonders</title>
+<meta name="description" content="Cẩm nang du lịch qua năm vùng đất: Thụy Sĩ, Morocco, Jordan, Peru và New Zealand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,50,0;1,9..144,300..700,50,1&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+@property --accent { syntax: '<color>'; inherits: true; initial-value: #2D7A9E; }
+
+:root {
+  --paper: #EEF0EA;
+  --paper-deep: #E2E5DC;
+  --ink: #1B2430;
+  --ink-soft: #4A5463;
+  --line: #C9CDC2;
+  --white: #FBFCF8;
+  --accent: #2D7A9E;
+  --f-display: 'Fraunces', Georgia, serif;
+  --f-body: 'Be Vietnam Pro', system-ui, sans-serif;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --gutter: clamp(16px, 4vw, 56px);
+  transition: --accent .9s var(--ease);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 1rem/1.6 var(--f-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { width: min(1240px, 100% - 2 * var(--gutter)); margin-inline: auto; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Shared: photo behind big type */
+.photo-type { position: relative; overflow: hidden; isolation: isolate; color: var(--white); border-radius: 8px; }
+.photo-type > img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;
+  transition: transform 1.6s var(--ease);
+}
+.photo-type::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(0deg, rgb(10 16 24 / .78) 0%, rgb(10 16 24 / .2) 55%, rgb(10 16 24 / .05) 100%);
+}
+.photo-type .big {
+  margin: 0; font: 300 clamp(3.4rem, 10vw, 9rem)/.88 var(--f-display); font-style: italic;
+  letter-spacing: -.035em; font-variation-settings: 'SOFT' 50, 'WONK' 1;
+}
+
+/* ---------- Header ---------- */
+.top {
+  position: absolute; inset: 0 0 auto; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px var(--gutter); color: var(--white);
+}
+.brand { font: 500 1.35rem/1 var(--f-display); font-style: italic; text-decoration: none; letter-spacing: -.01em; }
+.brand span { font-style: normal; font-weight: 300; }
+.top nav { display: flex; gap: 28px; align-items: center; }
+.top nav a { text-decoration: none; font-size: .94rem; opacity: .88; }
+.top nav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+.pass-btn {
+  display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgb(255 255 255 / .45);
+  background: rgb(255 255 255 / .08); backdrop-filter: blur(6px);
+  padding: 8px 14px; border-radius: 999px; text-decoration: none; font-size: .9rem;
+}
+.pass-btn b { font-weight: 600; min-width: 1ch; text-align: center; }
+@media (max-width: 760px) { .top nav a:not(.pass-btn) { display: none; } }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; min-height: max(640px, 100svh); color: var(--white); overflow: hidden; isolation: isolate; }
+.hero-media img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transform: scale(1.06); transition: opacity 1.1s var(--ease), transform 6s var(--ease);
+  z-index: -2;
+}
+.hero-media img.on { opacity: 1; transform: scale(1); }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(10 16 24 / .45) 0%, rgb(10 16 24 / 0) 26%),
+    linear-gradient(0deg, rgb(10 16 24 / .82) 0%, rgb(10 16 24 / .25) 48%, rgb(10 16 24 / 0) 70%);
+}
+.hero-body {
+  position: absolute; inset: auto 0 0; padding: 0 var(--gutter) clamp(20px, 3vw, 36px);
+  display: grid; gap: clamp(28px, 5vh, 56px);
+}
+.greet { display: grid; gap: 14px; max-width: 980px; }
+.greet .word {
+  font: 300 clamp(4.6rem, 15vw, 13.5rem)/.86 var(--f-display);
+  font-style: italic; letter-spacing: -.035em; margin: 0;
+  font-variation-settings: 'SOFT' 50, 'WONK' 1;
+}
+.greet .word span { display: inline-block; }
+.greet .meta { display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; }
+.greet .country { font: 500 clamp(1.4rem, 2.6vw, 2rem)/1.2 var(--f-display); }
+.greet .tagline { font-size: clamp(1rem, 1.4vw, 1.15rem); opacity: .9; }
+.greet .note { font-size: .88rem; opacity: .72; }
+.greet .cta {
+  justify-self: start; margin-top: 8px; display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); color: var(--ink); text-decoration: none; font-weight: 500;
+  padding: 13px 22px; border-radius: 999px; transition: background .25s, color .25s;
+}
+.greet .cta:hover { background: var(--accent); color: var(--white); }
+
+.tabs {
+  display: grid; grid-template-columns: repeat(5, minmax(0, 1fr));
+  border-top: 1px solid rgb(255 255 255 / .28);
+}
+.tab {
+  background: none; border: 0; text-align: left; padding: 16px 12px 6px 0;
+  position: relative; opacity: .62; transition: opacity .3s;
+}
+.tab::before {
+  content: ""; position: absolute; top: -1px; left: 0; height: 2px; width: 0;
+  background: var(--white); transition: width .6s var(--ease);
+}
+.tab:hover { opacity: .9; }
+.tab[aria-selected="true"] { opacity: 1; }
+.tab[aria-selected="true"]::before { width: calc(100% - 12px); }
+.tab strong { display: block; font: 500 1.05rem/1.3 var(--f-display); }
+.tab small { font-size: .78rem; opacity: .8; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) {
+  .tabs { display: flex; overflow-x: auto; scrollbar-width: none; gap: 20px; }
+  .tab { flex: 0 0 auto; padding-right: 0; }
+  .tab::before { width: 0; }
+  .tab[aria-selected="true"]::before { width: 100%; }
+}
+
+/* ---------- Sections ---------- */
+section.block { padding: clamp(72px, 11vw, 140px) 0; }
+.head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(32px, 5vw, 56px); }
+.head h2 { font: 400 clamp(2.3rem, 5vw, 4rem)/1.02 var(--f-display); letter-spacing: -.025em; margin: 0; }
+.head p { margin: 0; color: var(--ink-soft); max-width: 46ch; font-size: 1.05rem; }
+@media (max-width: 760px) { .head { grid-template-columns: 1fr; } }
+
+/* Filters */
+.filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(28px, 4vw, 44px); }
+.chip {
+  border: 1px solid var(--line); background: transparent; border-radius: 999px;
+  padding: 10px 18px; min-height: 44px; font-size: .95rem; transition: background .2s, border-color .2s, color .2s;
+}
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.chip .n { opacity: .55; margin-left: 4px; font-variant-numeric: tabular-nums; }
+
+/* Country chapters */
+.chapters { display: grid; gap: clamp(56px, 8vw, 104px); }
+.chapter.hide, .place.hide { display: none; }
+.band { min-height: clamp(300px, 42vw, 520px); display: grid; align-content: end; padding: clamp(20px, 3.5vw, 44px); }
+.chapter:hover .band > img { transform: scale(1.03); }
+.band .row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px 32px; }
+.band .hello { font: 400 1.05rem/1.3 var(--f-display); font-style: italic; opacity: .85; margin-bottom: 10px; display: block; }
+.band .side { display: grid; gap: 4px; text-align: right; max-width: 34ch; }
+.band .side p { margin: 0; font-size: 1.02rem; }
+.band .side small { opacity: .75; font-variant-numeric: tabular-nums; }
+.band::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--c); z-index: 1;
+}
+@media (max-width: 760px) { .band .side { text-align: left; } }
+
+.chapter-places { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.4vw, 32px); margin-top: clamp(16px, 2.4vw, 28px); }
+.chapter-places.one { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.place { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start; }
+.shot { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 4 / 3; background: var(--paper-deep); }
+.shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.place:hover .shot img { transform: scale(1.05); }
+.save {
+  position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%;
+  border: 0; background: rgb(251 252 248 / .9); display: grid; place-items: center; color: var(--ink);
+  transition: transform .2s var(--ease), background .2s, color .2s;
+}
+.save:active { transform: scale(.9); }
+.save svg { width: 20px; height: 20px; }
+.save[aria-pressed="true"] { background: var(--c); color: var(--white); }
+.save[aria-pressed="true"] path { fill: currentColor; }
+.cap { display: grid; gap: 6px; padding-top: 4px; }
+.cap .kind { font-size: .84rem; color: var(--c); font-weight: 500; }
+.cap h4 { margin: 0; font: 500 1.4rem/1.2 var(--f-display); letter-spacing: -.01em; }
+.cap p { margin: 0; color: var(--ink-soft); font-size: .96rem; }
+.cap .from { display: none; }
+/* Filtered view: places only, no country bands */
+.chapters.flat { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px) clamp(16px, 2.4vw, 28px); }
+.chapters.flat .chapter, .chapters.flat .chapter-places { display: contents; }
+.chapters.flat .chapter.hide, .chapters.flat .band { display: none; }
+.chapters.flat .place { grid-template-columns: 1fr; gap: 14px; }
+.chapters.flat .cap .kind { display: none; }
+.chapters.flat .cap .from { display: flex; align-items: center; gap: 8px; font-size: .84rem; color: var(--ink-soft); }
+.chapters.flat .cap .from i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+@media (max-width: 900px) { .chapters.flat { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .chapters.flat { grid-template-columns: 1fr; } }
+@media (max-width: 1000px) { .place { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .chapter-places, .chapter-places.one { grid-template-columns: 1fr; } }
+
+/* Seasons */
+.seasons-sec { background: var(--paper-deep); }
+.season-list { display: grid; border-top: 1px solid var(--line); }
+.season {
+  display: grid; grid-template-columns: 10.5rem minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 16px 40px; padding: 28px 0; border-bottom: 1px solid var(--line); align-items: start;
+}
+.season h3 { margin: 0; font: 500 1.4rem/1.2 var(--f-display); }
+.season .when { display: block; margin-top: 4px; font-size: .9rem; color: var(--c); font-weight: 500; }
+.bar { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.bar span { display: grid; gap: 6px; text-align: center; font-size: .74rem; color: var(--ink-soft); }
+.bar i { height: 34px; border-radius: 4px; background: rgb(27 36 48 / .07); }
+.bar .best i { background: var(--c); }
+.bar .best { color: var(--ink); font-weight: 600; }
+.why { display: grid; gap: 10px; font-size: .96rem; }
+.why p { margin: 0; }
+.why b { font-weight: 600; }
+.why .avoid { color: var(--ink-soft); }
+@media (max-width: 960px) {
+  .season { grid-template-columns: 1fr; }
+}
+
+/* Food */
+.food-tabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+.food-tab { border: 1px solid var(--line); background: none; border-radius: 999px; padding: 10px 18px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; }
+.food-tab i { width: 9px; height: 9px; border-radius: 50%; background: var(--c); }
+.food-tab[aria-selected="true"] { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.food-tab:hover { border-color: var(--ink); }
+
+.dish-band { min-height: clamp(320px, 38vw, 460px); display: grid; align-content: end; padding: clamp(20px, 3.5vw, 44px); }
+.dish-band .lede { display: block; font-size: .98rem; opacity: .85; margin-bottom: 10px; }
+.dish-band p { margin: 14px 0 0; max-width: 58ch; font-size: 1.05rem; }
+.dish-band.swap > * { animation: fadeIn .6s var(--ease) both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.food-body { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 56px); margin-top: clamp(24px, 3.5vw, 40px); }
+.food-body h3 { margin: 0 0 14px; font: 500 1.35rem/1.2 var(--f-display); }
+.how p { margin: 0 0 22px; }
+.also { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.also li { border-left: 3px solid var(--c); padding-left: 14px; }
+.also strong { display: block; font: 500 1.08rem/1.3 var(--f-display); }
+.also span { font-size: .92rem; color: var(--ink-soft); }
+.restos { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.resto {
+  background: var(--white); border-radius: 8px; overflow: hidden; display: grid; align-content: start;
+  border: 1px solid var(--line);
+}
+.resto-photo { position: relative; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper-deep); }
+.resto-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.resto:hover .resto-photo img { transform: scale(1.05); }
+.price-tag {
+  position: absolute; left: 12px; bottom: 12px; background: var(--white); color: var(--ink);
+  border-radius: 999px; padding: 6px 12px; font-size: .86rem; line-height: 1.3;
+  box-shadow: 0 6px 16px -6px rgb(10 16 24 / .4);
+}
+.price-tag b { font-weight: 600; color: var(--c); }
+.resto-body { padding: 20px 22px 22px; display: grid; gap: 14px; }
+.resto .near { display: flex; align-items: center; gap: 8px; font-size: .86rem; color: var(--ink-soft); }
+.resto .near svg { width: 16px; height: 16px; color: var(--c); flex: none; }
+.resto h4 { margin: 0; font: 500 1.4rem/1.2 var(--f-display); }
+.resto .rate { display: inline-flex; align-items: center; gap: 4px; font-size: .9rem; font-weight: 500; }
+.resto .rate svg { width: 15px; height: 15px; color: #C9962B; }
+.resto dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: .93rem; }
+.resto dt { color: var(--ink-soft); }
+.resto dd { margin: 0; }
+.resto .tip { margin: 0; font-size: .93rem; padding-top: 12px; border-top: 1px dashed var(--line); }
+.resto .acts { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-line { border: 1px solid var(--ink); background: none; border-radius: 999px; padding: 9px 16px; min-height: 44px; font-size: .9rem; }
+.btn-line:hover { background: var(--ink); color: var(--white); }
+.btn-line[aria-pressed="true"] { background: var(--c); border-color: var(--c); color: var(--white); }
+@media (max-width: 960px) { .food-body { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .restos { grid-template-columns: 1fr; } }
+
+/* Passport */
+.passport-sec { position: relative; color: var(--white); isolation: isolate; overflow: hidden; }
+.passport-sec > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.passport-sec::after { content: ""; position: absolute; inset: 0; background: rgb(14 22 32 / .62); z-index: -1; }
+.passport-sec .head p { color: rgb(251 252 248 / .82); }
+.book {
+  display: grid; grid-template-columns: 1fr 1fr; border-radius: 10px; overflow: hidden;
+  background: #F3F1E8; color: var(--ink); box-shadow: 0 30px 60px -20px rgb(0 0 0 / .55);
+  max-width: 980px;
+}
+.page {
+  position: relative; padding: clamp(20px, 3vw, 36px); min-height: 380px;
+  background:
+    repeating-radial-gradient(circle at 50% 120%, transparent 0 14px, rgb(45 70 90 / .06) 14px 15px),
+    #F3F1E8;
+}
+.page + .page { border-left: 1px dashed #CFCBBB; }
+.page .label { font-size: .82rem; color: var(--ink-soft); display: flex; justify-content: space-between; }
+.stamps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+.stamps .slot { aspect-ratio: 1; display: grid; place-items: center; }
+.stamp { width: 100%; max-width: 132px; color: var(--c); transform: rotate(var(--r)); mix-blend-mode: multiply; opacity: .88; }
+.stamp.new { animation: thud .5s var(--ease); }
+@keyframes thud { from { transform: rotate(var(--r)) scale(1.6); opacity: 0; } 60% { opacity: .95; } to { transform: rotate(var(--r)) scale(1); } }
+.empty { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding: 24px; gap: 14px; }
+.empty[hidden] { display: none; }
+.empty p { margin: 0; color: var(--ink-soft); max-width: 30ch; }
+.empty a { justify-self: center; font-weight: 500; }
+.saved-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+.saved-list li { display: flex; gap: 12px; align-items: center; }
+.saved-list img { width: 56px; height: 42px; object-fit: cover; border-radius: 3px; }
+.saved-list span { display: block; font-size: .82rem; color: var(--ink-soft); }
+.saved-list strong { font: 500 1rem/1.3 var(--f-display); }
+@media (max-width: 760px) { .book { grid-template-columns: 1fr; } .page + .page { border-left: 0; border-top: 1px dashed #CFCBBB; } .page { min-height: 300px; } }
+
+footer { padding: 40px 0; font-size: .88rem; color: var(--ink-soft); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0;
+  background: var(--ink); color: var(--white); padding: 12px 18px; border-radius: 999px; font-size: .92rem;
+  transition: opacity .25s, transform .25s var(--ease); pointer-events: none; z-index: 20; max-width: calc(100% - 32px);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { transition: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .hero-media img { transform: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#">Atlas <span>of</span> Wonders</a>
+  <nav aria-label="Chính">
+    <a href="#diem-den">Điểm đến</a>
+    <a href="#mua">Mùa đẹp</a>
+    <a href="#am-thuc">Ẩm thực</a>
+    <a class="pass-btn" href="#ho-chieu" aria-label="Hộ chiếu, số dấu đã đóng">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2"/><circle cx="12" cy="10" r="3.5"/><path d="M8.5 17h7"/></svg>
+      Hộ chiếu <b id="stampCount">0</b>
+    </a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-label="Năm vùng đất">
+    <div class="hero-media" id="heroMedia"></div>
+    <div class="hero-body">
+      <div class="greet" aria-live="polite">
+        <p class="word" id="greetWord" lang="de">Grüezi</p>
+        <div class="meta">
+          <span class="country" id="greetCountry">Thụy Sĩ</span>
+          <span class="tagline" id="greetTag"></span>
+        </div>
+        <span class="note" id="greetNote"></span>
+        <a class="cta" href="#diem-den">Xem năm vùng đất</a>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Chọn vùng đất" id="tabs"></div>
+    </div>
+  </section>
+
+  <section class="block" id="diem-den">
+    <div class="wrap">
+      <div class="head">
+        <h2>Mười nơi đáng để đi xa</h2>
+        <p>Mỗi vùng đất hai điểm đến không thể bỏ qua. Bấm vào trái tim để lưu địa điểm và đóng dấu vùng đất đó vào hộ chiếu.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Lọc theo cảnh quan" id="filters"></div>
+      <div class="chapters" id="chapters"></div>
+    </div>
+  </section>
+
+  <section class="block seasons-sec" id="mua">
+    <div class="wrap">
+      <div class="head">
+        <h2>Khi nào nên đi</h2>
+        <p>Năm vùng đất nằm ở cả hai bán cầu và nhiều kiểu khí hậu: núi tuyết, sa mạc, cao nguyên nhiệt đới. Vì vậy tháng nào trong năm cũng có một nơi đang vào mùa đẹp.</p>
+      </div>
+      <div class="season-list" id="seasons"></div>
+    </div>
+  </section>
+
+  <section class="block" id="am-thuc">
+    <div class="wrap">
+      <div class="head">
+        <h2>Ăn gì, ăn ở đâu</h2>
+        <p>Món nên thử ở từng vùng đất, cách người bản địa ăn nó, và những quán ngon ngay gần các điểm đến ở trên.</p>
+      </div>
+      <div class="food-tabs" role="tablist" aria-label="Chọn ẩm thực theo vùng đất" id="foodTabs"></div>
+      <div id="foodPanel" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section class="block passport-sec" id="ho-chieu">
+    <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?w=1800&q=70&auto=format" alt="" loading="lazy">
+    <div class="wrap">
+      <div class="head">
+        <h2>Hộ chiếu của bạn</h2>
+        <p>Mỗi vùng đất bạn lưu một địa điểm sẽ có một con dấu. Đủ năm dấu là bạn đã đi một vòng qua năm châu lục.</p>
+      </div>
+      <div class="book">
+        <div class="page">
+          <div class="label"><span>Dấu nhập cảnh</span><span id="stampOf">0 / 5</span></div>
+          <div class="stamps" id="stamps"></div>
+          <div class="empty" id="emptyStamps">
+            <p>Chưa có con dấu nào. Lưu một địa điểm bạn muốn đến để đóng dấu đầu tiên.</p>
+            <a href="#diem-den">Chọn địa điểm</a>
+          </div>
+        </div>
+        <div class="page">
+          <div class="label"><span>Nơi muốn đến</span><span id="savedOf">0 địa điểm</span></div>
+          <ul class="saved-list" id="savedList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Atlas of Wonders, bản demo thiết kế. Tên nhà hàng, giá và đánh giá chỉ mang tính minh họa.</span>
+    <span>Ảnh: Unsplash</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const IMG = id => w => `https://images.unsplash.com/photo-${id}?w=${w}&q=72&auto=format&fit=crop`;
+
+const COUNTRIES = [
+  { id: 'ch', name: 'Thụy Sĩ', greet: 'Grüezi', lang: 'de', langName: 'tiếng Đức Thụy Sĩ', coord: '46.8° B, 8.2° Đ', accent: '#2D7A9E',
+    tag: 'Thác nước, đồng cỏ và hồ băng dưới chân dãy Alps', img: IMG('1530122037265-a5f1f91d3b99'), band: IMG('1515488764276-beab7607c1e6'),
+    best: [6,7,8,9], range: 'Tháng 6 đến 9',
+    why: 'Mùa hè trên Alps: đồng cỏ nở hoa dại, nhiệt độ 18 đến 25°C, các tuyến cáp treo và đường mòn lên cao đều mở. Ngày dài, trời sáng đến gần 21 giờ.',
+    avoid: 'Tháng 4, 5 và tháng 11 là mùa giao mùa: nhiều cáp treo đóng để bảo trì, núi cao còn tuyết tan lầy lội. Muốn trượt tuyết thì đi từ tháng 12 đến tháng 3.' },
+  { id: 'ma', name: 'Morocco', greet: 'Salam', lang: 'ar', langName: 'tiếng Ả Rập Darija', coord: '31.8° B, 7.1° T', accent: '#3349B5',
+    tag: 'Làng thành đất nung và biển cát Sahara', img: IMG('1489749798305-4fea3ae63d43'), band: IMG('1539020140153-e479b8c22e70'),
+    best: [3,4,5,10,11], range: 'Mùa xuân và mùa thu',
+    why: 'Xuân và thu ban ngày khoảng 22 đến 28°C, đủ ấm để dạo phố cổ mà không bị nắng gắt. Đây cũng là lúc cắm trại qua đêm ở Sahara dễ chịu nhất.',
+    avoid: 'Tháng 7 và 8 sa mạc có thể vượt 45°C. Nếu đi vào tháng Ramadan, nhiều quán ăn đóng cửa ban ngày; nên kiểm tra lịch trước khi đặt vé.' },
+  { id: 'jo', name: 'Jordan', greet: 'Marhaba', lang: 'ar', langName: 'tiếng Ả Rập', coord: '30.6° B, 36.2° Đ', accent: '#B0533C',
+    tag: 'Thành phố tạc vào đá hồng giữa sa mạc', img: IMG('1579606032821-4e6161c81bd3'), band: IMG('1500530855697-b586d89ba3ee'),
+    best: [3,4,5,9,10,11], range: 'Mùa xuân và mùa thu',
+    why: 'Đi bộ trong Petra mất 5 đến 8 tiếng, nên cần trời mát: xuân và thu khoảng 20 đến 27°C. Tháng 4 hoa dại nở khắp các thung lũng đá.',
+    avoid: 'Mùa hè trên 35°C, trong khe đá Petra còn hầm hơn. Mùa đông đêm ở Wadi Rum xuống dưới 0°C, cắm trại sẽ rất lạnh.' },
+  { id: 'pe', name: 'Peru', greet: 'Allillanchu', lang: 'qu', langName: 'tiếng Quechua của người Andes', coord: '9.2° N, 75.0° T', accent: '#A1263F',
+    tag: 'Thành cổ Inca lẩn trong mây núi Andes', img: IMG('1526392060635-9d6019884377'), band: IMG('1587595431973-160d0d94add1'),
+    best: [5,6,7,8,9], range: 'Mùa khô, tháng 5 đến 9',
+    why: 'Mùa khô vùng Andes: trời trong, ít mưa, nhìn Machu Picchu rõ nhất. Ban ngày khoảng 20°C nhưng đêm trên cao nguyên có thể gần 0°C, nhớ mang áo ấm.',
+    avoid: 'Tháng 1 đến 3 là mùa mưa, sạt lở có thể làm chậm tàu lên núi. Đường mòn Inca đóng cửa cả tháng 2 để bảo trì.' },
+  { id: 'nz', name: 'New Zealand', greet: 'Kia ora', lang: 'mi', langName: 'tiếng Māori', coord: '40.9° N, 174.9° Đ', accent: '#2E6B4A',
+    tag: 'Hồ xanh ngọc và núi tuyết ở cuối bản đồ', img: IMG('1469521669194-babb45599def'), band: IMG('1589871973318-9ca1258faa5d'),
+    best: [12,1,2,3], range: 'Tháng 12 đến 3',
+    why: 'Đây là mùa hè Nam bán cầu, ngược với Việt Nam: 20 đến 25°C, trời sáng đến 21 giờ 30. Đồng hoa lupin quanh các hồ nở rộ từ cuối tháng 11 đến tháng 12.',
+    avoid: 'Tháng 6 đến 8 là mùa đông, một số đèo núi đóng vì tuyết và ngày rất ngắn. Bù lại đây là mùa trượt tuyết ở Queenstown.' },
+];
+const C = Object.fromEntries(COUNTRIES.map(c => [c.id, c]));
+
+const TAGS = { all: 'Tất cả', nui: 'Núi và hồ', samac: 'Sa mạc', disan: 'Di sản cổ' };
+const KIND = { nui: 'Núi và hồ', samac: 'Sa mạc', disan: 'Di sản cổ' };
+
+const PLACES = [
+  { c: 'ch', tag: 'nui', name: 'Thung lũng Lauterbrunnen', img: IMG('1530122037265-a5f1f91d3b99'), alt: 'Làng gỗ giữa đồng cỏ dưới vách đá cao ở Lauterbrunnen',
+    text: '72 thác nước đổ xuống từ vách đá, những ngôi nhà gỗ nằm rải rác giữa đồng cỏ xanh.' },
+  { c: 'ch', tag: 'nui', name: 'Zermatt và Matterhorn', img: IMG('1491555103944-7c647fd857e6'), alt: 'Đỉnh Matterhorn phủ tuyết',
+    text: 'Thị trấn không có xe hơi, nhìn thẳng lên đỉnh núi hình kim tự tháp cao 4.478 mét.' },
+  { c: 'ma', tag: 'disan', name: 'Aït Benhaddou', img: IMG('1489749798305-4fea3ae63d43'), alt: 'Làng thành đất nung Aït Benhaddou bên ốc đảo',
+    text: 'Làng thành bằng đất nung bên ốc đảo trên con đường lữ hành cũ, đến nay vẫn còn vài gia đình sinh sống.' },
+  { c: 'ma', tag: 'samac', name: 'Đồi cát Merzouga', img: IMG('1473580044384-7ba9967e16a0'), alt: 'Đồi cát lượn sóng ở sa mạc Sahara',
+    text: 'Cưỡi lạc đà vào Sahara lúc chiều muộn, ngủ lều Berber dưới bầu trời đầy sao.' },
+  { c: 'jo', tag: 'disan', name: 'Petra', img: IMG('1579606032821-4e6161c81bd3'), alt: 'Mặt tiền đền Al-Khazneh tạc trong đá hồng ở Petra',
+    text: 'Đền Al-Khazneh được người Nabataea tạc thẳng vào vách sa thạch hồng hơn 2.000 năm trước.' },
+  { c: 'jo', tag: 'samac', name: 'Wadi Rum', img: IMG('1509316785289-025f5b846b35'), alt: 'Núi đá đỏ giữa sa mạc',
+    text: 'Còn gọi là Thung lũng Mặt Trăng: núi đá đỏ, cát mịn và những đêm không một ánh đèn.' },
+  { c: 'pe', tag: 'disan', name: 'Machu Picchu', img: IMG('1526392060635-9d6019884377'), alt: 'Thành cổ Machu Picchu trên sống núi giữa mây',
+    text: 'Thành cổ Inca thế kỷ 15 nằm trên sống núi ở độ cao 2.430 mét, chỉ được thế giới biết đến từ năm 1911.' },
+  { c: 'pe', tag: 'nui', name: 'Huayna Picchu', img: IMG('1531065208531-4036c0dba3ca'), alt: 'Ngọn Huayna Picchu lúc hoàng hôn',
+    text: 'Ngọn núi dốc phía sau thành cổ. Leo khoảng một giờ để nhìn toàn cảnh Machu Picchu từ trên cao.' },
+  { c: 'nz', tag: 'nui', name: 'Hồ Wakatipu', img: IMG('1469521669194-babb45599def'), alt: 'Hồ Wakatipu với dãy núi phía xa',
+    text: 'Hồ hình tia chớp ôm lấy thị trấn Queenstown, mặt nước đổi màu theo từng giờ trong ngày.' },
+  { c: 'nz', tag: 'nui', name: 'Aoraki / Mount Cook', img: IMG('1464822759023-fed622ff2c3b'), alt: 'Núi tuyết và rừng thông ở vùng Aoraki',
+    text: 'Đỉnh núi cao nhất New Zealand. Người Māori xem Aoraki là tổ tiên linh thiêng của họ.' },
+];
+
+const FOOD = {
+  ch: {
+    dish: 'Fondue', lede: 'Món phải thử ở Thụy Sĩ',
+    desc: 'Phô mai Gruyère và Vacherin nấu chảy cùng chút rượu vang trắng trong nồi đất caquelon, dùng xiên dài chấm bánh mì.',
+    how: 'Người Thụy Sĩ ăn fondue vào mùa lạnh, cả nhóm quây quanh một nồi. Theo lệ, ai làm rơi bánh mì vào nồi sẽ phải mời cả bàn một ly. Lớp phô mai cháy giòn dưới đáy nồi gọi là la religieuse, được xem là phần ngon nhất.',
+    also: [['Rösti', 'Khoai tây bào sợi áp chảo giòn, thường ăn kèm trứng ốp và xúc xích.'], ['Raclette', 'Phô mai nướng chảy cạo thẳng lên khoai tây luộc và dưa chuột bao tử.']],
+    restos: [
+      { img: '1550966871-3ed3cdb5ed0c', name: 'Stübli am Wasserfall', near: 'Thung lũng Lauterbrunnen', dist: '5 phút đi bộ từ thác Staubbach', rate: '4,7', order: 'Rösti trứng ốp, trà táo nóng', price: 'Khoảng 30 CHF/người', hours: '11:00 đến 21:30', tip: 'Xin bàn ngoài hiên để vừa ăn vừa nhìn thác nước đổ xuống vách đá.' },
+      { img: '1590846406792-0adc7f938f1d', name: 'Hütte Edelweiss', near: 'Zermatt và Matterhorn', dist: '10 phút đi bộ từ ga Zermatt', rate: '4,8', order: 'Fondue phô mai cho 2 người', price: 'Khoảng 42 CHF/người', hours: '17:30 đến 23:00', tip: 'Quán nhỏ, chỉ 12 bàn. Đặt chỗ trước ít nhất một ngày vào mùa cao điểm.' },
+    ] },
+  ma: {
+    dish: 'Tajine', lede: 'Món phải thử ở Morocco',
+    desc: 'Thịt cừu hoặc gà hầm chậm với mơ khô, ô liu và chanh muối trong chiếc nồi đất có nắp hình chóp nón.',
+    how: 'Tajine được đặt giữa bàn cho mọi người ăn chung. Người Morocco không dùng thìa mà xé bánh mì khobz để gắp và vét nước sốt, và chỉ dùng tay phải. Bữa ăn thường kết thúc bằng trà bạc hà rót từ trên cao.',
+    also: [['Couscous thứ Sáu', 'Hạt couscous hấp với rau củ và thịt, món của bữa trưa gia đình sau giờ cầu nguyện.'], ['Medfouna', 'Bánh mì nhồi thịt nướng trong cát nóng, đặc sản của người Berber vùng Sahara.']],
+    restos: [
+      { img: '1541518763669-27fef04b14ea', name: 'Riad Tamazight Terrace', near: 'Aït Benhaddou', dist: 'Bên kia sông, 8 phút đi bộ', rate: '4,6', order: 'Tajine gà chanh muối, trà bạc hà', price: 'Khoảng 130 MAD/người', hours: '12:00 đến 22:00', tip: 'Lên sân thượng lúc hoàng hôn, cả làng thành đất nung chuyển sang màu cam đỏ.' },
+      { img: '1476224203421-9ac39bcb3327', name: 'Café Dunes d’Or', near: 'Đồi cát Merzouga', dist: 'Ngay chân đồi cát Erg Chebbi', rate: '4,7', order: 'Medfouna Berber, nước cam tươi', price: 'Khoảng 90 MAD/người', hours: '08:00 đến 21:00', tip: 'Ghé ăn trưa trước khi cưỡi lạc đà vào sa mạc lúc 17 giờ.' },
+    ] },
+  jo: {
+    dish: 'Mansaf', lede: 'Món quốc gia của Jordan',
+    desc: 'Thịt cừu nấu trong sữa chua lên men jameed, dọn trên lớp cơm và bánh mì dẹt shrak, rắc hạnh nhân và hạt thông rang.',
+    how: 'Mansaf là món của những dịp quan trọng: đám cưới, lễ hội, đón khách quý. Mọi người đứng quanh một mâm lớn, dùng tay phải vo cơm thành viên nhỏ. Chủ nhà sẽ liên tục gắp thêm thịt cho khách, nên ăn chậm thôi.',
+    also: [['Zarb', 'Thịt và rau củ nướng trong hố cát dưới lòng đất, cách nấu của người Bedouin.'], ['Knafeh', 'Bánh phô mai nướng phủ sợi bột giòn và siro hoa cam, ăn khi còn nóng.']],
+    restos: [
+      { img: '1600891964599-f61ba0e24092', name: 'Beit Nabati', near: 'Petra', dist: '600 m từ cổng vào Petra, thị trấn Wadi Musa', rate: '4,7', order: 'Mansaf, salad fattoush', price: 'Khoảng 14 JOD/người', hours: '12:00 đến 22:30', tip: 'Ăn tối ở đây sau khi đi Petra by Night vào thứ Hai, Tư hoặc Năm.' },
+      { img: '1530062845289-9109b2c9c868', name: 'Trại Rum Stars', near: 'Wadi Rum', dist: 'Trong khu bảo tồn, có xe đón từ làng Rum', rate: '4,9', order: 'Zarb nướng dưới cát, trà xô thơm', price: 'Khoảng 18 JOD/người', hours: 'Bữa tối lúc 19:30', tip: 'Xem người Bedouin đào thịt lên từ hố cát, rồi nằm ngắm sao sau bữa ăn.' },
+    ] },
+  pe: {
+    dish: 'Ceviche', lede: 'Món phải thử ở Peru',
+    desc: 'Cá trắng tươi thái miếng “chín” trong nước cốt chanh với ớt ají amarillo và hành tím, ăn kèm khoai lang và ngô hạt to.',
+    how: 'Người Peru chỉ ăn ceviche vào buổi trưa, khi cá vừa đánh bắt còn tươi nhất. Phần nước chanh còn lại trong đĩa gọi là leche de tigre (sữa hổ), được uống như một ly khai vị và được tin là giúp tỉnh táo.',
+    also: [['Lomo saltado', 'Thịt bò xào lửa lớn với hành, cà chua và khoai tây chiên, món giao thoa Peru và Quảng Đông.'], ['Cuy al horno', 'Chuột lang nướng nguyên con, món truyền thống trong lễ hội của người Andes.']],
+    restos: [
+      { img: '1535399831218-d5bd36d1a6b3', name: 'Picantería Urubamba', near: 'Machu Picchu', dist: 'Thị trấn Aguas Calientes, 3 phút từ bến xe buýt lên núi', rate: '4,6', order: 'Ceviche cá hồi suối, nước chicha morada', price: 'Khoảng 55 PEN/người', hours: '11:00 đến 21:00', tip: 'Ăn trưa sau khi xuống núi, quán nằm sát dòng sông Urubamba.' },
+      { img: '1600891964092-4316c288032e', name: 'Café Inti', near: 'Huayna Picchu', dist: 'Gần ga tàu Aguas Calientes', rate: '4,5', order: 'Lomo saltado, trà lá coca', price: 'Khoảng 45 PEN/người', hours: '06:00 đến 20:00', tip: 'Mở cửa từ 6 giờ sáng, tiện ăn sáng trước khi leo Huayna Picchu.' },
+    ] },
+  nz: {
+    dish: 'Hāngi', lede: 'Bữa ăn truyền thống của người Māori',
+    desc: 'Thịt cừu, gà, khoai lang kūmara và bí đỏ bọc lá, vùi dưới những tảng đá nung đỏ trong hố đất suốt ba đến bốn tiếng.',
+    how: 'Hāngi không phải món ăn hằng ngày mà dành cho dịp sum họp cả cộng đồng. Trước khi ăn, khách thường được chào đón bằng nghi lễ pōwhiri và cái chạm mũi hongi. Thức ăn có mùi khói đất rất riêng.',
+    also: [['Cừu nướng New Zealand', 'Thịt cừu nuôi thả đồng cỏ, nướng với hương thảo, phổ biến ở mọi nhà hàng.'], ['Pavlova', 'Bánh meringue giòn ngoài mềm trong, phủ kem tươi và kiwi.']],
+    restos: [
+      { img: '1559339352-11d035aa65de', name: 'Wharf & Fern', near: 'Hồ Wakatipu', dist: 'Trên bến thuyền Queenstown, sát mặt hồ', rate: '4,7', order: 'Sườn cừu nướng, pavlova kiwi', price: 'Khoảng 55 NZD/người', hours: '11:30 đến 22:00', tip: 'Đặt bàn khoảng 20 giờ vào mùa hè để ăn tối lúc mặt trời lặn sau dãy núi.' },
+      { img: '1529692236671-f1f6cf9683ba', name: 'Tussock Kitchen', near: 'Aoraki / Mount Cook', dist: 'Làng Aoraki, 5 phút từ trung tâm du khách', rate: '4,6', order: 'Set hāngi, súp kūmara', price: 'Khoảng 48 NZD/người', hours: '17:00 đến 21:00', tip: 'Đây là quán duy nhất mở tối trong làng, nên đặt chỗ từ sáng.' },
+    ] },
+};
+
+const $ = s => document.querySelector(s);
+const store = {
+  get() { try { return JSON.parse(localStorage.getItem('aow-saved') || '[]'); } catch { return []; } },
+  set(v) { try { localStorage.setItem('aow-saved', JSON.stringify(v)); } catch {} }
+};
+let saved = new Set(store.get());
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></svg>';
+const star = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9Z"/></svg>';
+const heart = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z"/></svg>';
+
+let toastT;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+/* ---------- Hero ---------- */
+const media = $('#heroMedia'), tabs = $('#tabs');
+COUNTRIES.forEach((c, i) => {
+  const img = new Image();
+  img.src = c.img(2000); img.alt = ''; img.dataset.id = c.id;
+  if (i) img.loading = 'lazy';
+  media.append(img);
+  tabs.insertAdjacentHTML('beforeend',
+    `<button class="tab" role="tab" id="tab-${c.id}" data-id="${c.id}" aria-selected="false"><strong>${c.name}</strong><small>${c.coord}</small></button>`);
+});
+
+let current;
+function setCountry(id, focus) {
+  if (id === current) return;
+  current = id;
+  const c = C[id];
+  document.documentElement.style.setProperty('--accent', c.accent);
+  media.querySelectorAll('img').forEach(im => im.classList.toggle('on', im.dataset.id === id));
+  tabs.querySelectorAll('.tab').forEach(t => {
+    const on = t.dataset.id === id;
+    t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+    if (on && focus) t.focus();
+  });
+  const w = $('#greetWord');
+  w.lang = c.lang;
+  w.innerHTML = [...c.greet].map((ch, i) =>
+    `<span style="${reduce ? '' : `animation: rise .7s ${i * 0.035}s both cubic-bezier(.2,.7,.2,1)`}">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
+  $('#greetCountry').textContent = c.name;
+  $('#greetTag').textContent = c.tag;
+  $('#greetNote').textContent = `“${c.greet}” là lời chào bằng ${c.langName}.`;
+}
+tabs.addEventListener('click', e => { const t = e.target.closest('.tab'); if (t) setCountry(t.dataset.id); });
+tabs.addEventListener('keydown', e => {
+  const i = COUNTRIES.findIndex(c => c.id === current);
+  const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+  if (d) { e.preventDefault(); setCountry(COUNTRIES[(i + d + 5) % 5].id, true); }
+});
+document.head.insertAdjacentHTML('beforeend',
+  '<style>@keyframes rise{from{opacity:0;transform:translateY(.35em)}to{opacity:1;transform:none}}</style>');
+setCountry('ch');
+
+/* ---------- Destinations by country ---------- */
+$('#chapters').innerHTML = COUNTRIES.map(c => {
+  const items = PLACES.map((p, i) => ({ ...p, i })).filter(p => p.c === c.id);
+  return `<article class="chapter" data-c="${c.id}" style="--c:${c.accent}" aria-labelledby="ch-${c.id}">
+    <header class="photo-type band">
+      <img src="${c.band(1800)}" alt="" loading="lazy">
+      <div>
+        <span class="hello" lang="${c.lang}">${c.greet}</span>
+        <div class="row">
+          <h3 class="big" id="ch-${c.id}">${c.name}</h3>
+          <div class="side"><p>${c.tag}</p><small>${c.coord}</small></div>
+        </div>
+      </div>
+    </header>
+    <div class="chapter-places">
+      ${items.map(p => `<div class="place" data-tag="${p.tag}">
+        <div class="shot">
+          <img src="${p.img(900)}" alt="${p.alt}" loading="lazy">
+          <button class="save" data-i="${p.i}" aria-pressed="${saved.has(p.i)}" aria-label="Lưu ${p.name}">${heart}</button>
+        </div>
+        <div class="cap">
+          <span class="kind">${KIND[p.tag]}</span>
+          <span class="from"><i></i>${c.name}</span>
+          <h4>${p.name}</h4>
+          <p>${p.text}</p>
+        </div>
+      </div>`).join('')}
+    </div>
+  </article>`;
+}).join('');
+
+const counts = { all: PLACES.length };
+PLACES.forEach(p => counts[p.tag] = (counts[p.tag] || 0) + 1);
+$('#filters').innerHTML = Object.entries(TAGS).map(([k, v]) =>
+  `<button class="chip" data-tag="${k}" aria-pressed="${k === 'all'}">${v}<span class="n">${counts[k]}</span></button>`).join('');
+$('#filters').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  const tag = b.dataset.tag;
+  document.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x === b));
+  $('#chapters').classList.toggle('flat', tag !== 'all');
+  document.querySelectorAll('.chapter').forEach(ch => {
+    let shown = 0;
+    ch.querySelectorAll('.place').forEach(el => {
+      const ok = tag === 'all' || el.dataset.tag === tag;
+      el.classList.toggle('hide', !ok); shown += ok;
+    });
+    ch.classList.toggle('hide', !shown);
+    ch.querySelector('.chapter-places').classList.toggle('one', shown === 1);
+  });
+});
+
+/* ---------- Seasons ---------- */
+$('#seasons').innerHTML = COUNTRIES.map(c => `<article class="season" style="--c:${c.accent}">
+  <div><h3>${c.name}</h3><span class="when">${c.range}</span></div>
+  <div class="bar" role="img" aria-label="Mùa đẹp ở ${c.name}: ${c.range}">
+    ${Array.from({ length: 12 }, (_, i) => `<span class="${c.best.includes(i + 1) ? 'best' : ''}"><i></i>T${i + 1}</span>`).join('')}
+  </div>
+  <div class="why">
+    <p><b>Vì sao nên đi lúc này.</b> ${c.why}</p>
+    <p class="avoid"><b>Nên tránh.</b> ${c.avoid}</p>
+  </div>
+</article>`).join('');
+
+/* ---------- Food ---------- */
+const foodTabs = $('#foodTabs'), foodPanel = $('#foodPanel');
+foodTabs.innerHTML = COUNTRIES.map(c =>
+  `<button class="food-tab" role="tab" data-id="${c.id}" id="ft-${c.id}" style="--c:${c.accent}" aria-selected="false"><i></i>${c.name}</button>`).join('');
+const savedResto = new Set();
+// Tỷ giá ước tính để quy đổi sang VND (minh họa)
+const RATE = { CHF: 31000, MAD: 2700, JOD: 36500, PEN: 7000, NZD: 15000 };
+function renderFood(id) {
+  const c = C[id], f = FOOD[id];
+  foodTabs.querySelectorAll('.food-tab').forEach(t => {
+    const on = t.dataset.id === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+  });
+  foodPanel.setAttribute('aria-labelledby', `ft-${id}`);
+  foodPanel.style.setProperty('--c', c.accent);
+  foodPanel.innerHTML = `
+    <div class="photo-type dish-band swap">
+      <img src="${c.img(1800)}" alt="">
+      <div>
+        <span class="lede">${f.lede}</span>
+        <h3 class="big">${f.dish}</h3>
+        <p>${f.desc}</p>
+      </div>
+    </div>
+    <div class="food-body">
+      <div class="how">
+        <h3>Ăn như người bản địa</h3>
+        <p>${f.how}</p>
+        <h3>Thử thêm</h3>
+        <ul class="also">${f.also.map(([n, d]) => `<li><strong>${n}</strong><span>${d}</span></li>`).join('')}</ul>
+      </div>
+      <div>
+        <h3>Quán ngon gần điểm đến</h3>
+        <div class="restos">${f.restos.map((r, k) => {
+          const key = `${id}-${k}`;
+          const [, amt, cur] = r.price.match(/(\d+)\s([A-Z]{3})/);
+          const vnd = (Math.round(amt * RATE[cur] / 10000) * 10000).toLocaleString('vi-VN');
+          return `<article class="resto">
+            <div class="resto-photo">
+              <img src="${IMG(r.img)(800)}" alt="Món ăn tại ${r.name}" loading="lazy">
+              <span class="price-tag">Trung bình <b>${vnd} ₫</b>/người</span>
+            </div>
+            <div class="resto-body">
+            <span class="near">${pin}Gần ${r.near}</span>
+            <div>
+              <h4>${r.name}</h4>
+              <span class="rate">${star}${r.rate}</span>
+            </div>
+            <dl>
+              <dt>Vị trí</dt><dd>${r.dist}</dd>
+              <dt>Nên gọi</dt><dd>${r.order}</dd>
+              <dt>Giá trung bình</dt><dd>${amt} ${cur}/người, khoảng ${vnd} ₫</dd>
+              <dt>Mở cửa</dt><dd>${r.hours}</dd>
+            </dl>
+            <p class="tip">${r.tip}</p>
+            <div class="acts">
+              <button class="btn-line" data-resto="${key}" data-name="${r.name}" aria-pressed="${savedResto.has(key)}">${savedResto.has(key) ? 'Đã lưu quán' : 'Lưu quán'}</button>
+              <button class="btn-line" data-map="${r.name}">Xem đường đi</button>
+            </div>
+            </div>
+          </article>`;
+        }).join('')}</div>
+      </div>
+    </div>`;
+}
+foodTabs.addEventListener('click', e => { const t = e.target.closest('.food-tab'); if (t) renderFood(t.dataset.id); });
+foodTabs.addEventListener('keydown', e => {
+  const ids = COUNTRIES.map(c => c.id);
+  const i = ids.indexOf(foodTabs.querySelector('[aria-selected="true"]').dataset.id);
+  const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+  if (d) { e.preventDefault(); const n = ids[(i + d + 5) % 5]; renderFood(n); $('#ft-' + n).focus(); }
+});
+foodPanel.addEventListener('click', e => {
+  const s = e.target.closest('[data-resto]');
+  if (s) {
+    const k = s.dataset.resto;
+    savedResto.has(k) ? savedResto.delete(k) : savedResto.add(k);
+    const on = savedResto.has(k);
+    s.setAttribute('aria-pressed', on); s.textContent = on ? 'Đã lưu quán' : 'Lưu quán';
+    toast(on ? `Đã lưu quán ${s.dataset.name}` : `Đã bỏ lưu quán ${s.dataset.name}`);
+  }
+  const m = e.target.closest('[data-map]');
+  if (m) toast('Bản đồ chỉ đường chưa có trong bản demo');
+});
+renderFood('ch');
+
+/* ---------- Passport ---------- */
+const ROT = { ch: -8, ma: 6, jo: -3, pe: 9, nz: -11 };
+function stampSVG(c, isNew) {
+  const label = `${c.name.toUpperCase()} • ${c.coord.split(',')[0]} •`;
+  return `<svg class="stamp${isNew ? ' new' : ''}" viewBox="0 0 120 120" style="--c:${c.accent};--r:${ROT[c.id]}deg" role="img" aria-label="Dấu ${c.name}">
+    <defs><path id="arc-${c.id}" d="M60,60 m-40,0 a40,40 0 1,1 80,0 a40,40 0 1,1 -80,0"/></defs>
+    <circle cx="60" cy="60" r="55" fill="none" stroke="currentColor" stroke-width="3"/>
+    <circle cx="60" cy="60" r="31" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <text font-family="Be Vietnam Pro, sans-serif" font-size="10" font-weight="600" fill="currentColor" letter-spacing="1.5"><textPath href="#arc-${c.id}">${label}</textPath></text>
+    <text x="60" y="68" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="24" fill="currentColor">${c.id.toUpperCase()}</text>
+  </svg>`;
+}
+function renderPassport(newCountry) {
+  const list = [...saved].sort((a, b) => a - b).map(i => PLACES[i]).filter(Boolean);
+  const got = COUNTRIES.filter(c => list.some(p => p.c === c.id));
+  $('#stamps').innerHTML = got.map(c => `<div class="slot">${stampSVG(c, c.id === newCountry)}</div>`).join('');
+  $('#emptyStamps').hidden = got.length > 0;
+  $('#stampOf').textContent = `${got.length} / 5`;
+  $('#stampCount').textContent = got.length;
+  $('#savedOf').textContent = `${list.length} địa điểm`;
+  $('#savedList').innerHTML = list.length
+    ? list.map(p => `<li><img src="${p.img(160)}" alt=""><div><strong>${p.name}</strong><span>${C[p.c].name}</span></div></li>`).join('')
+    : '<li><span>Các địa điểm bạn lưu sẽ hiện ở đây.</span></li>';
+}
+$('#chapters').addEventListener('click', e => {
+  const b = e.target.closest('.save'); if (!b) return;
+  const i = +b.dataset.i, p = PLACES[i];
+  const hadCountry = [...saved].some(j => PLACES[j] && PLACES[j].c === p.c);
+  if (saved.has(i)) { saved.delete(i); toast(`Đã bỏ lưu ${p.name}`); }
+  else {
+    saved.add(i);
+    toast(hadCountry ? `Đã lưu ${p.name}` : `Đã lưu ${p.name} và đóng dấu ${C[p.c].name} vào hộ chiếu`);
+  }
+  b.setAttribute('aria-pressed', saved.has(i));
+  store.set([...saved]);
+  renderPassport(!hadCountry && saved.has(i) ? p.c : null);
+});
+renderPassport();
+</script>
+</body>
+</html>
